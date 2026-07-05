@@ -10,10 +10,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen();
 
+//Database configuration
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//Product Service Configuration
 builder.Services.AddScoped<IProductService, ProductService>();
 var app = builder.Build();
 
@@ -25,14 +28,14 @@ if (app.Environment.IsDevelopment())
     app.MapScalarApiReference();
 
     //Swagger Configuration
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    //app.UseSwagger();
+    //app.UseSwaggerUI();
 
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProductsManagement v1");
-        c.RoutePrefix = string.Empty;
-    });
+    //app.UseSwaggerUI(c =>
+    //{
+    //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProductsManagement v1");
+    //    c.RoutePrefix = string.Empty;
+    //});
 }
 
 app.UseHttpsRedirection();
