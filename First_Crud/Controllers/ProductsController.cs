@@ -18,7 +18,7 @@ namespace First_Crud.Controllers
         }
 
         //For Add Product
-        [HttpPost]
+        [HttpPost("create-product")]
         public IActionResult AddProduct(ProductRequired product)
         {
             var response = productService.AddProduct(product);
@@ -27,14 +27,14 @@ namespace First_Crud.Controllers
         }
 
         //For Get All Products
-        [HttpGet]
+        [HttpGet("get-all-product")]
         public IActionResult GetProducts()
         {    
             return Ok(productService.GetProducts());
         }
 
         //For Get Product By ID
-        [HttpGet]
+        [HttpGet("get-product-by-id")]
         [Route("{Id}")]
         public IActionResult GetProductById(int Id)
         {
@@ -46,8 +46,8 @@ namespace First_Crud.Controllers
             return Ok(response);
         }
 
-        //For Delete Product
-        [HttpPut]
+        //For Update Product
+        [HttpPut("update-product")]
         public IActionResult UpdateProduct(Product product)
         {
             var response = productService.UpdateProduct(product);
@@ -61,7 +61,7 @@ namespace First_Crud.Controllers
         }
 
         //For Delete Product
-        [HttpDelete]
+        [HttpDelete("delete-product")]
         public IActionResult DeleteProduct(int Id)
         {
             try
